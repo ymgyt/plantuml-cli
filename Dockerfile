@@ -2,10 +2,12 @@ FROM openjdk:19-jdk-slim-bullseye
 
 RUN apt-get update \
     && apt-get install --assume-yes --quiet \
+        fonts-takao \
         graphviz \
-         fonts-takao
+        wget
 
-COPY plantuml/plantuml-1.2021.16.jar /plantuml/plantuml.jar
+RUN mkdir /plantuml \
+    && wget --output-document - https://github.com/plantuml/plantuml/releases/download/v1.2021.16/plantuml-1.2021.16.jar > /plantuml/plantuml.jar
 
 WORKDIR /home
 
